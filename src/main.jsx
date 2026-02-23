@@ -3,9 +3,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { SimpleForm } from './components/SimpleForm.jsx'
+import { Form } from './components/Form.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <SimpleForm />
+    <Form />
   </StrictMode>,
 )
