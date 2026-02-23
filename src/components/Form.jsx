@@ -12,8 +12,6 @@ export const Form = () => {
 		Carrera: "",
 	});
 
-	const { Matricula, Nombre } = formState;
-
 	const onInputChange = ({ target }) => {
 		const { name, value } = target;
 		setFormState((prev) => ({ ...prev, [name]: value }));
@@ -27,10 +25,12 @@ export const Form = () => {
 	}, [formState]);
 	useEffect(() => {
 		console.log("Nombre changed!");
-	}, [Nombre]);
+	}, [formState.Nombre]);
+
+	const { Matricula, Nombre, Apellidos, Edad, Universidad, Carrera } = formState;
 
 	const onSubmit = (e) => {
-		e.preventDefault(); // prevent full page reload
+		e.preventDefault(); 
 		console.log("Submitting form", formState);
 		setFormState({
 			Matricula: "",
@@ -43,48 +43,67 @@ export const Form = () => {
 	};
 
 	return (
-		<div className="login-body">
-			<div className="row">
-				<div className="input-cart col s12 m10 push-m1 z-depth-2 grey lighten-5">
-					<div className="col s12 m5 login">
-						<h4 className="center">Log in</h4>
-						<br />
-						<form onSubmit={onSubmit} autoComplete="off">
-							<div className="row">
-								<div className="input-field">
-									<input
-										type="text"
-										className="validate"
-										placeholder="Matricula"
-										name="Matricula"
-										value={Matricula}
-										onChange={onInputChange}
-									/>
-								</div>
-							</div>
-							<div className="row">
-								<div className="input-field">
-									<input
-										type="text"
-										className="validate"
-										placeholder="Nombre"
-										name="Nombre"
-										value={Nombre}
-										onChange={onInputChange}
-									/>
-								</div>
-							</div>
-							<div className="row">
-								<div className="col s6">
-									<button type="submit" name="login" className="btn waves-effect waves-light blue right">
-										Log in
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+		<>
+		<div className="background">
+			<div className="shape"></div>
+			<div className="shape"></div>
 		</div>
+		<form>
+			<h3>Login Here</h3>
+
+			<label htmlFor="Nombre">Nombre</label>
+			<input type="text"
+				className="form-control"
+				placeholder="Nombre"
+				name="Nombre"
+				value={Nombre}
+				onChange={onInputChange}/>
+
+
+			<label htmlFor="Apellidos">Apellidos</label>
+			<input type="text"
+				className="form-control"
+				placeholder="Apellidos"
+				name="Apellidos"
+				value={Apellidos}
+				onChange={onInputChange}/>
+
+
+			<label htmlFor="Matricula">Matricula</label>
+			<input type="text"
+				className="form-control"
+				placeholder="Matricula"
+				name="Matricula"
+				value={Matricula}
+				onChange={onInputChange}/>
+
+			<label htmlFor="Edad">Edad</label>
+			<input type="number"
+				className="form-control"
+				placeholder="Edad"
+				name="Edad"
+				value={Edad}
+				onChange={onInputChange}/>
+			
+			<label htmlFor="Universidad">Universidad</label>
+			<input type="text"
+				className="form-control"
+				placeholder="Universidad"
+				name="Universidad"
+				value={Universidad}
+				onChange={onInputChange}/>
+
+			<label htmlFor="Carrera">Carrera</label>
+			<input type="text"
+				className="form-control"
+				placeholder="Carrera"
+				name="Carrera"
+				value={Carrera}
+				onChange={onInputChange}/>
+			
+
+			<button  onClick= {onSubmit}>Log In</button>
+		</form>
+		</>
 	);
 };
